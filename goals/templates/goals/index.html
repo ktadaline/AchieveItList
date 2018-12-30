@@ -1,0 +1,9 @@
+{% if latest_goallist_list %}
+<ul>
+    {% for goallist in latest_goallist_list %}
+    <li><a href="{%url 'goals:detail' goallist.id %}">{{ goallist.goal_title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No goal lists are available.</p>
+{% endif %}

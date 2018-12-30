@@ -1,0 +1,15 @@
+<h1>{{ goallist.goal_title }}</h1>
+
+{%if error_message%}<p><strong>{{error_message}}</strong></p>{% endif %}
+<ul>
+{% for goalitem in goallist.goalitem_set.all %}
+    <li>{{ goalitem.goal_item }}</li>
+{% endfor %}
+</ul>
+
+<form action="{%url 'goals:detail' goallist.id %}" method="post"> </form>
+{% csrf_token %}
+    <label for="add">To Do: </label>
+    <input id="add" type="text" name="To Do" required placeholder="Enter a new goal" value="{{ goal_item }}">
+    <input type="submit" value="Add">
+</form>
