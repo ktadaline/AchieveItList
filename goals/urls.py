@@ -10,5 +10,7 @@ urlpatterns = [
     path('<int:goallist_id>', views.detail, name='detail'),
     # ex /goals/1/add/
     path('<int:goallist_id>/add/', views.add, name='add'),
+    # ex /goals/completed
+    path('<int:goallist_id>/completed/', views.completed, name='completed'),
 
 ]

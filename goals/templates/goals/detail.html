@@ -7,9 +7,27 @@
 {% endfor %}
 </ul>
 
-<form action="{%url 'goals:detail' goallist.id %}" method="post"> </form>
+
+<form action="{% url 'goals:detail' goallist.id%}" method="post">
+{% csrf_token %}
+{% for goalitem in goallist.goalitem_set.all %}
+    <input type="checkbox" name="goalitem" id="goalitem"{{ forloop.counter }}">-
+    <label for="goalitem"{{ forloop.counter }}">{{goalitem.goal_item }}</label>
+    <br>
+{% endfor %}
+<input type="submit" value="completed">
+</form>
+
+<form action="{%url 'goals:detail' goallist.id %}" method="post-form">
 {% csrf_token %}
     <label for="add">To Do: </label>
     <input id="add" type="text" name="To Do" required placeholder="Enter a new goal" value="{{ goal_item }}">
+    {{ form.as_p }}
     <input type="submit" value="Add">
 </form>
+
+ <h2>New Thing To Complete<h2>
+    <form method ="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
